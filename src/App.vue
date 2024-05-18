@@ -1,5 +1,5 @@
 <template>
-  <div>하이</div>
+  <div></div>
 </template>
 
 <script>
