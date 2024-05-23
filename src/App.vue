@@ -1,29 +1,17 @@
 <template>
   <div>
-    <form action="">
-      <input v-model.lazy="title" type="text" placeholder="title" />
-      <textarea v-model.lazy="contents" placeholder="contents"></textarea>
-    </form>
+    <TheNav></TheNav>
+    <TheView></TheView>
   </div>
 </template>
 
 <script>
-import { ref, watchEffect } from 'vue'
-
+import TheNav from './components/TheNav.vue'
+import TheView from './components/TheView.vue'
 export default {
-  setup() {
-    const title = ref('')
-    const contents = ref('')
-
-    const save = (title, contents) => {
-      console.log(`저장되었습니다. title: ${title}, contents: ${contents}`)
-    }
-
-    watchEffect(() => {
-      console.log('watchEffect')
-      save(title.value, contents.value)
-    })
-    return { title, contents }
+  components: {
+    TheNav,
+    TheView
   }
 }
 </script>
