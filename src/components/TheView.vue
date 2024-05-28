@@ -1,68 +1,42 @@
 <template>
-  <div>
-    <main>
-      <div class="container py-4">
-        <PostCreate @create-post="createPost"></PostCreate>
-
-        <hr class="my-4" />
-
-        <div class="row g-3">
-          <div v-for="post in posts" :key="post.id" class="col col-4">
-            <AppCard
-              :title="post.title"
-              :contents="post.contents"
-              :is-like="post.isLike"
-              :type="post.type"
-              @toggle-like="post.isLike = !post.isLike"
-            ></AppCard>
-            <!-- <button @click="post.isLike = !post.isLike">버튼</button> -->
-          </div>
-        </div>
-
-        <hr class="my-4" />
-        <!-- <LabelInput
-          :model-value="username"
-          @update:model-value="(value) => (username = value)"
-        ></LabelInput> -->
-
-        <LabelInput v-model="username" label="이름"></LabelInput>
-      </div>
-    </main>
-  </div>
+  <main>
+    <div class="container py-5">
+      <Mybutton class="my-button" id="my-button" @click="sayHello"></Mybutton>
+      <LabelInput label="이름" data-id="id임"></LabelInput>
+      <hr />
+      <FancyButton>slot button <span style="color: red">@@@</span></FancyButton>
+      <FancyButton></FancyButton>
+      <hr />
+      <AppCard>
+        <template #[slotArgs]>제목입니다</template>
+        <!-- <template #default>내용@@@@@@@@@@@@@</template> -->
+        <!-- 암시적으로 default 슬롯입니다.
+        <template #footer>푸터푸터</template> -->
+      </AppCard>
+    </div>
+  </main>
 </template>
 
 <script>
-import { reactive, ref } from 'vue'
-import AppCard from './App.card.vue'
-import PostCreate from './PostCreate.vue'
+import { ref } from 'vue'
+import AppCard from './AppCard.vue'
+import FancyButton from './FancyButton.vue'
 import LabelInput from './LabelInput.vue'
+import Mybutton from './Mybutton.vue'
 
 export default {
   components: {
-    AppCard,
-    PostCreate,
-    LabelInput
+    Mybutton,
+    LabelInput,
+    FancyButton,
+    AppCard
   },
   setup() {
-    const post = reactive({
-      title: '제목2',
-      contents: '내용2'
-    })
-    const posts = reactive([
-      { id: 1, title: '제목1', contents: '내용1', isLike: true, type: 'news' },
-      { id: 2, title: '제목2', contents: '내용2', isLike: true, type: 'news' },
-      { id: 3, title: '제목3', contents: '내용3', isLike: true, type: 'news' },
-      { id: 4, title: '제목4', contents: '내용4', isLike: false, type: 'notice' },
-      { id: 5, title: '제목5', contents: '내용5', isLike: false, type: 'notice' }
-    ])
-
-    const createPost = (newPost) => {
-      console.log('newPost:', newPost)
-      posts.push(newPost)
+    const sayHello = () => {
+      alert('ㅎㅇ')
     }
-
-    const username = ref('')
-    return { post, posts, createPost, username }
+    const slotArgs = ref('header')
+    return { sayHello, slotArgs }
   }
 }
 </script>

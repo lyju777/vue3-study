@@ -1,14 +1,13 @@
 <template>
-  <div>
-    <label>
-      {{ label }}
-      <input
-        type="text"
-        :value="modelValue"
-        @input="(event) => $emit('update:modelValue', event.target.value)"
-      />
-    </label>
-  </div>
+  <label class="child-class" style="border: ipx solid black" id="child-id">
+    {{ label }}
+    <input
+      :="$attrs"
+      type="text"
+      :value="modelValue"
+      @input="(event) => $emit('update:modelValue', event.target.value)"
+    />
+  </label>
 </template>
 
 <script>
