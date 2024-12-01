@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "title": "Learn Vue.js",
+    "completed": false
+  },
+  {
+    "id": 2,
+    "title": "Build a project",
+    "completed": true
+  },
+  {
+    "id": 3,
+    "title": "Read documentation",
+    "completed": false
+  }
+]
